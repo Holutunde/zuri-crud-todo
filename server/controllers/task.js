@@ -6,7 +6,7 @@ const createTask = async (req, res) => {
   const newTask = new Task({
     title,
     description,
-    timestamp: new Date().toLocaleDateString,
+    timestamp: new Date().toDateString(),
   })
 
   try {
@@ -20,7 +20,22 @@ const createTask = async (req, res) => {
   }
 }
 
-const getTask = (req, res, next) => {}
+const getTask = async (req, res) => {
+  try {
+    //console.log(req.params.id)
+    const tastRecord = await Task.findById(req.params.id)
+    if (tastRecord == null) {
+      return res.status(404).json({ successful: false, message: 'Not found' })
+    }
+
+    return res.json({
+      successful: true,
+      message: tastRecord,
+    })
+  } catch (error) {
+    return res.status(500).json({ successful: false, message: error.message })
+  }
+}
 
 const getAllTasks = (req, res) => {
   Task.find({}, '', function (err, allTasks) {
