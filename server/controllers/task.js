@@ -22,7 +22,14 @@ const createTask = async (req, res) => {
 
 const getTask = (req, res, next) => {}
 
-const getAllTasks = (req, res) => {}
+const getAllTasks = (req, res) => {
+  Task.find({}, '', function (err, allTasks) {
+    return res.json({
+      successful: true,
+      message: allTasks,
+    })
+  })
+}
 const deleteTask = (req, res, next) => {}
 
 module.exports = {
