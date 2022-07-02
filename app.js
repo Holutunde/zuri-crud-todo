@@ -1,17 +1,17 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
-const tasks = require('./routes/tasks')
+const tasks = require('./server/routes/tasks')
 const connectDB = require('./database/connect')
 require('dotenv').config()
 
 // middleware
-
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('./public'))
 app.use(express.json())
 
 // routes
-
-app.use('/', tasks)
+app.use('/tasks', tasks)
 
 const port = process.env.PORT || 5000
 

@@ -3,17 +3,17 @@ const { Schema } = mongoose
 
 const taskschema = new Schema({
   title: {
-    required: true,
     type: String,
+    required: true,
   },
   description: {
-    required: true,
     type: String,
+    required: true,
   },
   timestamp: {
-    required: true,
     type: Date,
+    required: true,
   },
 })
 
-module.exports = mongoose.model('Tasks', taskschema)
+module.exports = mongoose.model('Task', taskschema)
