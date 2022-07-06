@@ -6,7 +6,6 @@ const createTask = async (req, res) => {
   const newTask = new Task({
     title,
     description,
-    timestamp: new Date().toDateString(),
   })
 
   try {
